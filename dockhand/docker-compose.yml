@@ -1,0 +1,26 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: dockhand
+      POSTGRES_PASSWORD: changeme
+      POSTGRES_DB: dockhand
+      TZ: Asia/Kolkata
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+
+  dockhand:
+    image: fnsys/dockhand:latest
+    ports:
+      - 3000:3000
+    environment:
+      DATABASE_URL: postgres://dockhand:changeme@postgres:5432/dockhand
+      TZ: Asia/Kolkata
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./dockhand_data:/app/data
+      - /mnt/ssd/containers/:/app/data/stacks
+    depends_on:
+      - postgres
+    restart: unless-stopped
