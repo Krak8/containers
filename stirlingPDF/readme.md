@@ -1,3 +1,5 @@
 **Default credentials :**
-Username: admin
-Password: stirling
+
+Username: `admin`
+
+Password: `stirling`
