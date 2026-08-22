@@ -15,7 +15,7 @@ services:
   dockhand:
     image: fnsys/dockhand:latest
     ports:
-      - 3000:3000
+      - 5500:3000
     environment:
       DATABASE_URL: postgres://dockhand:changeme@postgres:5432/dockhand
       TZ: Asia/Kolkata
